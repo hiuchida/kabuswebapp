@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
 		try (LockedAuthorizedTokenLogic login = new LockedAuthorizedTokenLogic()) {
 			String X_API_KEY = login.getApiKey();
 			response.getWriter().append("X_API_KEY=").append(X_API_KEY);

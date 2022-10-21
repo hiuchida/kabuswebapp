@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **currentPrice** | **Double** | 現在値 |  [optional]
 **changeRatio** | **Double** | 前日比 |  [optional]
 **rapidPaymentPercentage** | **Double** | 代金急増（％） |  [optional]
-**turnover** | **Double** | 売買代金 |  [optional]
+**turnover** | **Double** | 売買代金&lt;br&gt;売買代金を百万円単位で表示する&lt;br&gt;※十万円の位を四捨五入 |  [optional]
 **currentPriceTime** | **String** | 時刻&lt;br&gt;HH:mm&lt;br&gt;※日付は返しません |  [optional]
 **changePercentage** | **Double** | 騰落率（%） |  [optional]
 **exchangeName** | **String** | 市場名 |  [optional]

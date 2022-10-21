@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **currentPrice** | **Double** | 現在値 |  [optional]
 **changeRatio** | **Double** | 前日比 |  [optional]
 **rapidTradePercentage** | **Double** | 売買高急増（％） |  [optional]
-**tradingVolume** | **Double** | 売買高 |  [optional]
+**tradingVolume** | **Double** | 売買高&lt;br&gt;売買高を千株単位で表示する&lt;br&gt;※百株の位を四捨五入 |  [optional]
 **currentPriceTime** | **String** | 時刻&lt;br&gt;HH:mm&lt;br&gt;※日付は返しません |  [optional]
 **changePercentage** | **Double** | 騰落率（%） |  [optional]
 **exchangeName** | **String** | 市場名 |  [optional]

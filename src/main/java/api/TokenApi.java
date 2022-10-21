@@ -6,7 +6,6 @@ import io.swagger.client.ApiException;
 import io.swagger.client.api.AuthApi;
 import io.swagger.client.model.RequestToken;
 import io.swagger.client.model.TokenSuccess;
-import util.WarnLog;
 
 /**
  * トークン発行API。
@@ -54,8 +53,7 @@ public class TokenApi {
 			TokenSuccess ts = invoke(body);
 			return ts;
 		} catch (ApiException e) {
-			WarnLog.warn("Login Error. " + e.getResponseBody(), clazz, "post", apiPassword);
-//			ApiErrorLog.error(e, clazz, "post", apiPassword);
+			ApiErrorLog.error(e, clazz, "post", apiPassword);
 			throw e;
 		}
 	}
@@ -70,21 +68,9 @@ public class TokenApi {
 	private TokenSuccess invoke(RequestToken body) throws ApiException {
 		try {
 			TokenSuccess ts = authApi.tokenPost(body);
-			String param = body.toString();
-			debug(ts, param);
 			return ts;
 		} finally {
 		}
-	}
-
-	/**
-	 * デバッグログを出力する。
-	 * 
-	 * @param ts    トークン発行。
-	 * @param param パラメータ値。
-	 */
-	private void debug(TokenSuccess ts, String param) {
-		ApiDebugLog.debug(ts.toString(), clazz, "invoke", param);
 	}
 
 }

@@ -5,7 +5,6 @@ import java.lang.invoke.MethodHandles;
 import io.swagger.client.ApiException;
 import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.ApiSoftLimitResponse;
-import util.WarnLog;
 
 /**
  * ソフトリミットAPI。
@@ -45,8 +44,7 @@ public class ApisoftlimitApi {
 			ApiSoftLimitResponse aslr = invoke();
 			return aslr;
 		} catch (ApiException e) {
-			WarnLog.warn("Invalid Token. " + e.getResponseBody(), clazz, "get", X_API_KEY);
-//			ApiErrorLog.error(e, clazz, "get", "");
+			ApiErrorLog.error(e, clazz, "get", "");
 			throw e;
 		}
 	}
@@ -60,8 +58,6 @@ public class ApisoftlimitApi {
 	private ApiSoftLimitResponse invoke() throws ApiException {
 		try {
 			ApiSoftLimitResponse aslr = infoApi.apisoftlimitGet(X_API_KEY);
-			String param = "";
-			debug(aslr, param);
 			return aslr;
 		} finally {
 			try {
@@ -69,16 +65,6 @@ public class ApisoftlimitApi {
 			} catch (Exception e) {
 			}
 		}
-	}
-
-	/**
-	 * デバッグログを出力する。
-	 * 
-	 * @param aslr  ソフトリミット。
-	 * @param param パラメータ値。
-	 */
-	private void debug(ApiSoftLimitResponse aslr, String param) {
-		ApiDebugLog.debug(aslr.toString(), clazz, "invoke", param);
 	}
 
 }

@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import io.swagger.client.ApiException;
 import util.DateTimeUtil;
 import util.FileUtil;
-import util.WarnLog;
 
 /**
  * APIエラーログを管理する。
@@ -41,8 +40,6 @@ public class ApiErrorLog {
 		ApiErrorLog.clazz = clazz;
 		ApiErrorLog.version = version;
 		ApiErrorLog.printVersion();
-		ApiDebugLog.init(clazz, version);
-		WarnLog.init(clazz, version);
 	}
 
 	/**

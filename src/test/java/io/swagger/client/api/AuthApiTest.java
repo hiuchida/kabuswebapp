@@ -12,23 +12,16 @@
 
 package io.swagger.client.api;
 
-import io.swagger.client.model.ErrorResponse;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 import io.swagger.client.model.RequestToken;
 import io.swagger.client.model.TokenSuccess;
-import org.junit.Test;
-import org.junit.Ignore;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 /**
  * API tests for AuthApi
  */
-@Ignore
+@Disabled
 public class AuthApiTest {
 
     private final AuthApi api = new AuthApi();

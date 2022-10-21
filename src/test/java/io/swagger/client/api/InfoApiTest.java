@@ -12,9 +12,13 @@
 
 package io.swagger.client.api;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 import io.swagger.client.model.ApiSoftLimitResponse;
 import io.swagger.client.model.BoardSuccess;
-import io.swagger.client.model.ErrorResponse;
 import io.swagger.client.model.ExchangeResponse;
 import io.swagger.client.model.InlineResponse200;
 import io.swagger.client.model.MarginPremiumResponse;
@@ -24,20 +28,11 @@ import io.swagger.client.model.PrimaryExchangeResponse;
 import io.swagger.client.model.RegulationsResponse;
 import io.swagger.client.model.SymbolNameSuccess;
 import io.swagger.client.model.SymbolSuccess;
-import org.junit.Test;
-import org.junit.Ignore;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 /**
  * API tests for InfoApi
  */
-@Ignore
+@Disabled
 public class InfoApiTest {
 
     private final InfoApi api = new InfoApi();

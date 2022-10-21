@@ -12,25 +12,18 @@
 
 package io.swagger.client.api;
 
-import io.swagger.client.model.ErrorResponse;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 import io.swagger.client.model.RegistSuccess;
 import io.swagger.client.model.RequestRegister;
 import io.swagger.client.model.RequestUnregister;
 import io.swagger.client.model.UnregisterAllSuccess;
-import org.junit.Test;
-import org.junit.Ignore;
-
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 
 /**
  * API tests for RegisterApi
  */
-@Ignore
+@Disabled
 public class RegisterApiTest {
 
     private final RegisterApi api = new RegisterApi();

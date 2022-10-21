@@ -12,7 +12,9 @@
 
 package io.swagger.client.api;
 
-import org.junit.jupiter.api.Disabled;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 
 import io.swagger.client.model.RequestToken;
@@ -21,7 +23,7 @@ import io.swagger.client.model.TokenSuccess;
 /**
  * API tests for AuthApi
  */
-@Disabled
+// @Disabled // modify
 public class AuthApiTest {
 
     private final AuthApi api = new AuthApi();
@@ -37,8 +39,13 @@ public class AuthApiTest {
     @Test
     public void tokenPostTest() throws Exception {
         RequestToken body = null;
+        body = new RequestToken();           // add
+        body.setApIPassword("YourPassword"); // add
         TokenSuccess response = api.tokenPost(body);
 
         // TODO: test validations
+        System.out.println(response);                     // add
+        assertEquals(0, (int) response.getResultCode());  // add
+        assertNotNull(response.getToken());               // add
     }
 }

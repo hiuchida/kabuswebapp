@@ -12,9 +12,21 @@
 
 package io.swagger.client.api;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import api.consts.SideCode;
+import api.consts.deliv.ExchangeDCode;
+import api.consts.deliv.FrontOrderTypeDCode;
+import api.consts.deliv.TimeInForceCode;
+import api.consts.deliv.TradeTypeCode;
+import api.consts.stock.AccountTypeCode;
+import api.consts.stock.CashmarginStockCode;
+import api.consts.stock.DelivTypeCode;
+import api.consts.stock.ExchangeSCode;
+import api.consts.stock.FrontOrderTypeSCode;
+import api.consts.stock.FundTypeCode;
+import api.consts.stock.MarginTradeTypeCode;
+import api.consts.stock.SecurityTypeCode;
 import io.swagger.client.model.OrderSuccess;
 import io.swagger.client.model.RequestCancelOrder;
 import io.swagger.client.model.RequestSendOrder;
@@ -24,8 +36,9 @@ import io.swagger.client.model.RequestSendOrderDerivOption;
 /**
  * API tests for OrderApi
  */
-@Disabled
+// @Disabled
 public class OrderApiTest {
+	private static final String PWD = "YourTradePassword";
 
     private final OrderApi api = new OrderApi();
 
@@ -39,11 +52,14 @@ public class OrderApiTest {
      */
     @Test
     public void cancelorderPutTest() throws Exception {
-        RequestCancelOrder body = null;
-        String X_API_KEY = null;
+        RequestCancelOrder body = new RequestCancelOrder();
+        body.setOrderId("20220317A02N52384855");
+        body.setPassword(PWD);
+        String X_API_KEY = AuthorizedToken.getToken();
         OrderSuccess response = api.cancelorderPut(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
     /**
      * 注文発注（先物）
@@ -55,11 +71,22 @@ public class OrderApiTest {
      */
     @Test
     public void sendoderFuturePostTest() throws Exception {
-        RequestSendOrderDerivFuture body = null;
-        String X_API_KEY = null;
+        RequestSendOrderDerivFuture body = new RequestSendOrderDerivFuture();
+        body.setPassword(PWD);
+        body.setSymbol("167060019"); // 日経225mini 22/06
+        body.setExchange(ExchangeDCode.日通し.intValue());
+        body.setTradeType(TradeTypeCode.新規.intValue());
+        body.setTimeInForce(TimeInForceCode.FAS.intValue());
+        body.setSide(SideCode.買.toString());
+        body.setQty(1); // 注文数量
+        body.setFrontOrderType(FrontOrderTypeDCode.指値.intValue());
+        body.setPrice(24500.0); // 注文価格
+        body.setExpireDay(0); // 注文有効期限
+        String X_API_KEY = AuthorizedToken.getToken();
         OrderSuccess response = api.sendoderFuturePost(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
     /**
      * 注文発注（オプション）
@@ -71,11 +98,22 @@ public class OrderApiTest {
      */
     @Test
     public void sendorderOptionPostTest() throws Exception {
-        RequestSendOrderDerivOption body = null;
-        String X_API_KEY = null;
+        RequestSendOrderDerivOption body = new RequestSendOrderDerivOption();
+        body.setPassword(PWD);
+        body.setSymbol("147047518"); // 日経平均オプション 22/04 コール 27500
+        body.setExchange(ExchangeDCode.日通し.intValue());
+        body.setTradeType(TradeTypeCode.新規.intValue());
+        body.setTimeInForce(TimeInForceCode.FAS.intValue());
+        body.setSide(SideCode.買.toString());
+        body.setQty(1); // 注文数量
+        body.setFrontOrderType(FrontOrderTypeDCode.指値.intValue());
+        body.setPrice(1.0); // 注文価格
+        body.setExpireDay(0); // 注文有効期限
+        String X_API_KEY = AuthorizedToken.getToken();
         OrderSuccess response = api.sendorderOptionPost(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
     /**
      * 注文発注（現物・信用）
@@ -87,10 +125,25 @@ public class OrderApiTest {
      */
     @Test
     public void sendorderPostTest() throws Exception {
-        RequestSendOrder body = null;
-        String X_API_KEY = null;
+        RequestSendOrder body = new RequestSendOrder();
+        body.setPassword(PWD);
+        body.setSymbol("9433@" + ExchangeSCode.東証.toString()); // ＫＤＤＩ
+        body.setExchange(ExchangeSCode.東証.intValue());
+        body.setSecurityType(SecurityTypeCode.株式.intValue());
+        body.setSide(SideCode.買.toString());
+        body.setCashMargin(CashmarginStockCode.現物.intValue());
+        body.setMarginTradeType(MarginTradeTypeCode.制度信用.intValue());
+        body.setDelivType(DelivTypeCode.指定なし.intValue());
+        body.setFundType(FundTypeCode.信用代用.toString());
+        body.setAccountType(AccountTypeCode.特定.intValue());
+        body.setQty(100); // 注文数量
+        body.setFrontOrderType(FrontOrderTypeSCode.指値.intValue());
+        body.setPrice(100.0); // 注文価格
+        body.setExpireDay(0); // 注文有効期限
+        String X_API_KEY = AuthorizedToken.getToken();
         OrderSuccess response = api.sendorderPost(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
 }

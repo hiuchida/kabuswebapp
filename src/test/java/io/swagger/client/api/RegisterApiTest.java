@@ -12,7 +12,6 @@
 
 package io.swagger.client.api;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import io.swagger.client.model.RegistSuccess;
@@ -23,7 +22,7 @@ import io.swagger.client.model.UnregisterAllSuccess;
 /**
  * API tests for RegisterApi
  */
-@Disabled
+// @Disabled
 public class RegisterApiTest {
 
     private final RegisterApi api = new RegisterApi();
@@ -38,11 +37,12 @@ public class RegisterApiTest {
      */
     @Test
     public void registerPutTest() throws Exception {
-        RequestRegister body = null;
-        String X_API_KEY = null;
+        RequestRegister body = new RequestRegister();
+        String X_API_KEY = AuthorizedToken.getToken();
         RegistSuccess response = api.registerPut(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
     /**
      * 銘柄登録全解除
@@ -54,10 +54,11 @@ public class RegisterApiTest {
      */
     @Test
     public void unregisterAllPutTest() throws Exception {
-        String X_API_KEY = null;
+        String X_API_KEY = AuthorizedToken.getToken();
         UnregisterAllSuccess response = api.unregisterAllPut(X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
     /**
      * 銘柄登録解除
@@ -69,10 +70,11 @@ public class RegisterApiTest {
      */
     @Test
     public void unregisterPutTest() throws Exception {
-        RequestUnregister body = null;
-        String X_API_KEY = null;
+        RequestUnregister body = new RequestUnregister();
+        String X_API_KEY = AuthorizedToken.getToken();
         RegistSuccess response = api.unregisterPut(body, X_API_KEY);
 
         // TODO: test validations
+        System.out.println(response);        
     }
 }

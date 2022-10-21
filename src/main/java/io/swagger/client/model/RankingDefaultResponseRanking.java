@@ -25,7 +25,7 @@ import java.io.IOException;
  * RankingDefaultResponseRanking
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class RankingDefaultResponseRanking {
   @SerializedName("No")
   private Integer no = null;
@@ -234,10 +234,10 @@ public class RankingDefaultResponseRanking {
   }
 
    /**
-   * 売買高
+   * 売買高&lt;br&gt;売買高を千株単位で表示する&lt;br&gt;※百株の位を四捨五入
    * @return tradingVolume
   **/
-  @Schema(description = "売買高")
+  @Schema(description = "売買高<br>売買高を千株単位で表示する<br>※百株の位を四捨五入")
   public Double getTradingVolume() {
     return tradingVolume;
   }
@@ -252,10 +252,10 @@ public class RankingDefaultResponseRanking {
   }
 
    /**
-   * 売買代金
+   * 売買代金&lt;br&gt;売買代金を百万円単位で表示する&lt;br&gt;※十万円の位を四捨五入
    * @return turnover
   **/
-  @Schema(description = "売買代金")
+  @Schema(description = "売買代金<br>売買代金を百万円単位で表示する<br>※十万円の位を四捨五入")
   public Double getTurnover() {
     return turnover;
   }

@@ -28,7 +28,7 @@ import java.util.List;
  * RegulationsResponse
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class RegulationsResponse {
   @SerializedName("Symbol")
   private String symbol = null;

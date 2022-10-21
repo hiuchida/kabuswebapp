@@ -25,7 +25,7 @@ import java.io.IOException;
  * RankingByTradeValueResponseRanking
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class RankingByTradeValueResponseRanking {
   @SerializedName("No")
   private Integer no = null;
@@ -216,10 +216,10 @@ public class RankingByTradeValueResponseRanking {
   }
 
    /**
-   * 売買代金
+   * 売買代金&lt;br&gt;売買代金を百万円単位で表示する&lt;br&gt;※十万円の位を四捨五入
    * @return turnover
   **/
-  @Schema(description = "売買代金")
+  @Schema(description = "売買代金<br>売買代金を百万円単位で表示する<br>※十万円の位を四捨五入")
   public Double getTurnover() {
     return turnover;
   }

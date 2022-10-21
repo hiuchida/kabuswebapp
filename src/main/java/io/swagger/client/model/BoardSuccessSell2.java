@@ -25,7 +25,7 @@ import java.io.IOException;
  * 売気配数量2本目
  */
 @Schema(description = "売気配数量2本目")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class BoardSuccessSell2 {
   @SerializedName("Price")
   private Double price = null;

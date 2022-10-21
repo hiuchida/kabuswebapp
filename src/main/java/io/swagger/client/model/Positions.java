@@ -25,7 +25,7 @@ import java.io.IOException;
  * Positions
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class Positions {
   @SerializedName("HoldID")
   private String holdID = null;
@@ -42,7 +42,7 @@ public class Positions {
    * 返済建玉ID
    * @return holdID
   **/
-  @Schema(example = "20200702E01N04699739", description = "返済建玉ID")
+  @Schema(description = "返済建玉ID")
   public String getHoldID() {
     return holdID;
   }
@@ -60,7 +60,7 @@ public class Positions {
    * 返済建玉数量
    * @return qty
   **/
-  @Schema(example = "500", description = "返済建玉数量")
+  @Schema(description = "返済建玉数量")
   public Integer getQty() {
     return qty;
   }

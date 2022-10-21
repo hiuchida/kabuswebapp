@@ -29,7 +29,7 @@ import java.util.List;
  * RequestSendOrderDerivFuture
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-04-09T08:07:59.802Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-20T16:10:10.621Z[GMT]")
 public class RequestSendOrderDerivFuture {
   @SerializedName("Password")
   private String password = null;
@@ -246,10 +246,10 @@ public class RequestSendOrderDerivFuture {
   }
 
    /**
-   * 執行条件 &lt;table&gt;   &lt;thead&gt;       &lt;tr&gt;           &lt;th&gt;定義値&lt;/th&gt;           &lt;th&gt;説明&lt;/th&gt;           &lt;th&gt;”Price”の指定&lt;/th&gt;       &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;       &lt;tr&gt;           &lt;td&gt;18&lt;/td&gt;           &lt;td&gt;引成（派生）&lt;br&gt;※TimeInForceは、「FAK」のみ有効&lt;/td&gt;           &lt;td&gt;0&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;20&lt;/td&gt;           &lt;td&gt;指値&lt;/td&gt;           &lt;td&gt;発注したい金額&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;28&lt;/td&gt;           &lt;td&gt;引指（派生）&lt;br&gt;※TimeInForceは、「FAS」のみ有効&lt;/td&gt;           &lt;td&gt;発注したい金額&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;30&lt;/td&gt;           &lt;td&gt;逆指値&lt;/td&gt;           &lt;td&gt;&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;120&lt;/td&gt;           &lt;td&gt;成行（マーケットオーダー）&lt;/td&gt;           &lt;td&gt;0&lt;/td&gt;       &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
+   * 執行条件 &lt;table&gt;   &lt;thead&gt;       &lt;tr&gt;           &lt;th&gt;定義値&lt;/th&gt;           &lt;th&gt;説明&lt;/th&gt;           &lt;th&gt;”Price”の指定&lt;/th&gt;       &lt;/tr&gt;   &lt;/thead&gt;   &lt;tbody&gt;       &lt;tr&gt;           &lt;td&gt;18&lt;/td&gt;           &lt;td&gt;引成（派生）&lt;br&gt;※TimeInForceは、「FAK」のみ有効&lt;/td&gt;           &lt;td&gt;0&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;20&lt;/td&gt;           &lt;td&gt;指値&lt;/td&gt;           &lt;td&gt;発注したい金額&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;28&lt;/td&gt;           &lt;td&gt;引指（派生）&lt;br&gt;※TimeInForceは、「FAS」のみ有効&lt;/td&gt;           &lt;td&gt;発注したい金額&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;30&lt;/td&gt;           &lt;td&gt;逆指値&lt;/td&gt;           &lt;td&gt;指定なし&lt;br&gt;※AfterHitPriceで指定ください&lt;/td&gt;       &lt;/tr&gt;       &lt;tr&gt;           &lt;td&gt;120&lt;/td&gt;           &lt;td&gt;成行（マーケットオーダー）&lt;/td&gt;           &lt;td&gt;0&lt;/td&gt;       &lt;/tr&gt;   &lt;/tbody&gt; &lt;/table&gt;
    * @return frontOrderType
   **/
-  @Schema(required = true, description = "執行条件 <table>   <thead>       <tr>           <th>定義値</th>           <th>説明</th>           <th>”Price”の指定</th>       </tr>   </thead>   <tbody>       <tr>           <td>18</td>           <td>引成（派生）<br>※TimeInForceは、「FAK」のみ有効</td>           <td>0</td>       </tr>       <tr>           <td>20</td>           <td>指値</td>           <td>発注したい金額</td>       </tr>       <tr>           <td>28</td>           <td>引指（派生）<br>※TimeInForceは、「FAS」のみ有効</td>           <td>発注したい金額</td>       </tr>       <tr>           <td>30</td>           <td>逆指値</td>           <td></td>       </tr>       <tr>           <td>120</td>           <td>成行（マーケットオーダー）</td>           <td>0</td>       </tr>   </tbody> </table>")
+  @Schema(required = true, description = "執行条件 <table>   <thead>       <tr>           <th>定義値</th>           <th>説明</th>           <th>”Price”の指定</th>       </tr>   </thead>   <tbody>       <tr>           <td>18</td>           <td>引成（派生）<br>※TimeInForceは、「FAK」のみ有効</td>           <td>0</td>       </tr>       <tr>           <td>20</td>           <td>指値</td>           <td>発注したい金額</td>       </tr>       <tr>           <td>28</td>           <td>引指（派生）<br>※TimeInForceは、「FAS」のみ有効</td>           <td>発注したい金額</td>       </tr>       <tr>           <td>30</td>           <td>逆指値</td>           <td>指定なし<br>※AfterHitPriceで指定ください</td>       </tr>       <tr>           <td>120</td>           <td>成行（マーケットオーダー）</td>           <td>0</td>       </tr>   </tbody> </table>")
   public Integer getFrontOrderType() {
     return frontOrderType;
   }

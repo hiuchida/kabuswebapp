@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import api.BoardApi;
 import io.swagger.client.ApiException;
-import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.BoardSuccess;
 import logic.LockedAuthorizedTokenLogic;
 
@@ -33,8 +33,10 @@ public class BoardServlet extends HttpServlet {
 		try (LockedAuthorizedTokenLogic login = new LockedAuthorizedTokenLogic()) {
 			String X_API_KEY = login.getApiKey();
 	        String symbol = "9433@1"; // ＫＤＤＩ
-	        InfoApi infoApi = new InfoApi();
-	        BoardSuccess board = infoApi.boardGet(X_API_KEY, symbol);
+	        BoardApi boardApi = new BoardApi(X_API_KEY);
+	        BoardSuccess board = boardApi.get(symbol);
+//	        InfoApi infoApi = new InfoApi();
+//	        BoardSuccess board = infoApi.boardGet(X_API_KEY, symbol);
 	        System.out.println(board);
 			response.getWriter().append(board.toString());
 		} catch (ApiException e) {

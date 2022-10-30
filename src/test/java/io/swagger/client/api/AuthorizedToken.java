@@ -47,7 +47,7 @@ public class AuthorizedToken {
 		if (token == null) {
 			AuthApi authApi = new AuthApi();
 			RequestToken body = new RequestToken();
-	        body.setApIPassword("YourPassword");
+	        body.setApIPassword(TestConsts.API_PASSWORD);
 	        TokenSuccess response = authApi.tokenPost(body);
 	        System.out.println(response);
 	        token = response.getToken();

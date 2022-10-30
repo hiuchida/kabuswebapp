@@ -38,7 +38,7 @@ import io.swagger.client.model.RequestSendOrderDerivOption;
  */
 // @Disabled
 public class OrderApiTest {
-	private static final String PWD = "YourTradePassword";
+	private static final String PWD = TestConsts.TRADE_PASSWORD;
 
     private final OrderApi api = new OrderApi();
 

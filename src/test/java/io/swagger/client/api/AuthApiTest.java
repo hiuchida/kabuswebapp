@@ -23,7 +23,7 @@ import io.swagger.client.model.TokenSuccess;
 /**
  * API tests for AuthApi
  */
-// @Disabled // modify
+// @Disabled
 public class AuthApiTest {
 
     private final AuthApi api = new AuthApi();
@@ -39,13 +39,13 @@ public class AuthApiTest {
     @Test
     public void tokenPostTest() throws Exception {
         RequestToken body = null;
-        body = new RequestToken();           // add
-        body.setApIPassword("YourPassword"); // add
+        body = new RequestToken();
+        body.setApIPassword(TestConsts.API_PASSWORD);
         TokenSuccess response = api.tokenPost(body);
 
         // TODO: test validations
-        System.out.println(response);                     // add
-        assertEquals(0, (int) response.getResultCode());  // add
-        assertNotNull(response.getToken());               // add
+        System.out.println(response);
+        assertEquals(0, (int) response.getResultCode());
+        assertNotNull(response.getToken());
     }
 }

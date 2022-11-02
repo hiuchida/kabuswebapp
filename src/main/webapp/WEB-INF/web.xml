@@ -17,6 +17,12 @@
   	<servlet-class>server.web.LoginServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>OrdersServlet</servlet-name>
+  	<display-name>OrdersServlet</display-name>
+  	<description></description>
+  	<servlet-class>server.web.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>VersionServlet</servlet-name>
   	<display-name>VersionServlet</display-name>
   	<description></description>
@@ -30,6 +36,10 @@
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>OrdersServlet</servlet-name>
+  	<url-pattern>/orders</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VersionServlet</servlet-name>

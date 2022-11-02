@@ -23,6 +23,12 @@
   	<servlet-class>server.web.OrdersServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>PositionsServlet</servlet-name>
+  	<display-name>PositionsServlet</display-name>
+  	<description></description>
+  	<servlet-class>server.web.PositionsServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>VersionServlet</servlet-name>
   	<display-name>VersionServlet</display-name>
   	<description></description>
@@ -40,6 +46,10 @@
   <servlet-mapping>
   	<servlet-name>OrdersServlet</servlet-name>
   	<url-pattern>/orders</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PositionsServlet</servlet-name>
+  	<url-pattern>/positions</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VersionServlet</servlet-name>

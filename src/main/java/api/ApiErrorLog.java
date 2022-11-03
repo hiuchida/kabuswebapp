@@ -4,21 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import io.swagger.client.ApiException;
+import util.AppCommon;
 import util.DateTimeUtil;
 import util.FileUtil;
 
 /**
  * APIエラーログを管理する。
  */
-public class ApiErrorLog {
-	/**
-	 * 基準パス。
-	 */
-	private static final String SERVER_DIRPATH = "/tmp/server/";
+public class ApiErrorLog extends AppCommon {
 	/**
 	 * APIエラーログのファイルパス。存在しなければ生成される。
 	 */
-	private static final String LOG_FILEPATH = SERVER_DIRPATH + "ApiError.log";
+	private static final String LOG_FILEPATH = SERVER_DIR_PATH + "ApiError.log";
 
 	/**
 	 * 実行アプリクラス。

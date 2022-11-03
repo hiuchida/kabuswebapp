@@ -10,35 +10,28 @@ import logic.FileLockLogic;
 /**
  * 認証済TOKENをファイルロック管理する。
  */
-public class LockedAuthorizedTokenUtil {
+public class LockedAuthorizedTokenUtil extends AppCommon {
 	/**
 	 * クラス。
 	 */
 	private static Class<?> clazz = MethodHandles.lookup().lookupClass();
-	/**
-	 * 基準パス。
-	 */
-	private static final String DIRPATH = "/tmp/";
-	/**
-	 * 基準パス。
-	 */
-	private static final String SERVER_DIRPATH = "/tmp/server/";
+
 	/**
 	 * 1行目にAPIパスワードを保存したファイルパス。事前に準備する。
 	 */
-	private static final String PWD_FILEPATH = DIRPATH + "LockedAuthorizedToken.pwd";
+	private static final String PWD_FILEPATH = HOME_PATH + "LockedAuthorizedToken.pwd";
 	/**
 	 * 1行目に認証済TOKENを保存したファイルパス。存在しなければ生成される。
 	 */
-	private static final String TXT_FILEPATH = DIRPATH + "LockedAuthorizedToken.txt";
+	private static final String TXT_FILEPATH = HOME_PATH + "LockedAuthorizedToken.txt";
 	/**
 	 * ファイルロック管理用0バイトのファイルパス。存在しなければ生成される。
 	 */
-	private static final String LOCK_FILEPATH = DIRPATH + "LockedAuthorizedToken.lock";
+	private static final String LOCK_FILEPATH = HOME_PATH + "LockedAuthorizedToken.lock";
 	/**
 	 * ファイルロック管理ログのファイルパス。存在しなければ生成される。
 	 */
-	private static final String LOG_FILEPATH = SERVER_DIRPATH + "LockedAuthorizedToken.log";
+	private static final String LOG_FILEPATH = SERVER_DIR_PATH + "LockedAuthorizedToken.log";
 
 	/**
 	 * シングルトンインスタンス。

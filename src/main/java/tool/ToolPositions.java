@@ -14,6 +14,7 @@ import java.util.TreeSet;
 import api.PositionsApi;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.PositionsSuccess;
+import util.AppCommon;
 import util.AppUtil;
 import util.DateTimeUtil;
 import util.DoubleUtil;
@@ -25,27 +26,24 @@ import util.StringUtil;
 /**
  * 建玉情報を管理する。
  */
-public class ToolPositions {
+public class ToolPositions extends AppCommon {
 	/**
 	 * クラス。
 	 */
 	private static Class<?> clazz = MethodHandles.lookup().lookupClass();
-	/**
-	 * 基準パス。
-	 */
-	private static final String SERVER_DIRPATH = "/tmp/server/";
+
 	/**
 	 * 建玉情報を保存したファイルパス。存在しなければ生成される。
 	 */
-	private static final String TXT_FILEPATH = SERVER_DIRPATH + "ToolPositions.txt";
+	private static final String TXT_FILEPATH = SERVER_DIR_PATH + "ToolPositions.txt";
 	/**
 	 * 建玉情報の削除情報を保存したファイルパス。存在しなければ生成される。
 	 */
-	private static final String DEL_FILEPATH = SERVER_DIRPATH + "ToolPositions.del";
+	private static final String DEL_FILEPATH = SERVER_DIR_PATH + "ToolPositions.del";
 	/**
 	 * 建玉情報ログのファイルパス。存在しなければ生成される。
 	 */
-	private static final String LOG_FILEPATH = SERVER_DIRPATH + "ToolPositions.log";
+	private static final String LOG_FILEPATH = SERVER_DIR_PATH + "ToolPositions.log";
 
 	/**
 	 * 建玉情報クラス

@@ -29,6 +29,12 @@
   	<servlet-class>server.web.PositionsServlet</servlet-class>
   </servlet>
   <servlet>
+  	<servlet-name>SymbolNameServlet</servlet-name>
+  	<display-name>SymbolNameServlet</display-name>
+  	<description></description>
+  	<servlet-class>server.web.SymbolNameServlet</servlet-class>
+  </servlet>
+  <servlet>
   	<servlet-name>VersionServlet</servlet-name>
   	<display-name>VersionServlet</display-name>
   	<description></description>
@@ -50,6 +56,10 @@
   <servlet-mapping>
   	<servlet-name>PositionsServlet</servlet-name>
   	<url-pattern>/positions</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SymbolNameServlet</servlet-name>
+  	<url-pattern>/symbolName</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>VersionServlet</servlet-name>

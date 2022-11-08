@@ -2,6 +2,8 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.consts.ExchangeCode;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.BoardSuccess;
@@ -38,11 +40,12 @@ public class BoardApi {
 	 * 時価情報・板情報APIの現値。
 	 * 
 	 * @param symbol 銘柄コード(Symbol)。
+	 * @param ec     市場コード。
 	 * @return 現値。
 	 * @throws ApiException
 	 */
-	public int getCurPrice(String symbol) throws ApiException {
-		BoardSuccess bs = this.get(symbol);
+	public int getCurPrice(String symbol, ExchangeCode ec) throws ApiException {
+		BoardSuccess bs = this.get(symbol, ec);
 		int curPrice = DoubleUtil.intValue(bs.getCurrentPrice());
 		return curPrice;
 	}
@@ -51,12 +54,13 @@ public class BoardApi {
 	 * 時価情報・板情報API。
 	 * 
 	 * @param symbol 銘柄コード(Symbol)。
+	 * @param ec     市場コード。
 	 * @return 時価情報・板情報。
 	 * @throws ApiException
 	 */
-	public BoardSuccess get(String symbol) throws ApiException {
+	public BoardSuccess get(String symbol, ExchangeCode ec) throws ApiException {
 		try {
-			BoardSuccess bs = invoke(symbol);
+			BoardSuccess bs = invoke(symbol, ec);
 			return bs;
 		} catch (ApiException e) {
 			ApiErrorLog.error(e, clazz, "get", symbol);
@@ -68,12 +72,13 @@ public class BoardApi {
 	 * 時価情報・板情報API。
 	 * 
 	 * @param symbol 銘柄コード(Symbol)。
+	 * @param ec     市場コード。
 	 * @return 時価情報・板情報。
 	 * @throws ApiException
 	 */
-	private BoardSuccess invoke(String symbol) throws ApiException {
+	private BoardSuccess invoke(String symbol, ExchangeCode ec) throws ApiException {
 		try {
-			BoardSuccess bs = infoApi.boardGet(X_API_KEY, symbol);
+			BoardSuccess bs = infoApi.boardGet(X_API_KEY, symbol + "@" + ec.toString());
 			return bs;
 		} finally {
 			try {

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.github.hiuchida.api.consts.ExchangeCode;
+
 import api.BoardApi;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.BoardSuccess;
@@ -32,9 +34,9 @@ public class BoardServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		try (LockedAuthorizedTokenLogic login = new LockedAuthorizedTokenLogic()) {
 			String X_API_KEY = login.getApiKey();
-	        String symbol = "9433@1"; // ＫＤＤＩ
+	        String symbol = "9433"; // ＫＤＤＩ
 	        BoardApi boardApi = new BoardApi(X_API_KEY);
-	        BoardSuccess board = boardApi.get(symbol);
+	        BoardSuccess board = boardApi.get(symbol, ExchangeCode.東証);
 //	        InfoApi infoApi = new InfoApi();
 //	        BoardSuccess board = infoApi.boardGet(X_API_KEY, symbol);
 	        System.out.println(board);

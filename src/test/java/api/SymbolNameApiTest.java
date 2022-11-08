@@ -35,14 +35,6 @@ public class SymbolNameApiTest {
 	public void beforeEach() {
 	}
 
-    /**
-     * 先物銘柄コード取得
-     *
-     * 先物銘柄コード取得
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
 	@Test
 	public void getFutureTest() throws Exception {
 		FutureCode futureCode = FutureCode.日経225mini先物;
@@ -54,14 +46,7 @@ public class SymbolNameApiTest {
 		assertEquals("167110019", response.getSymbol());
 		assertEquals("日経225mini 22/11", response.getSymbolName());
 	}
-    /**
-     * オプション銘柄コード取得
-     *
-     * オプション銘柄コード取得
-     *
-     * @throws Exception
-     *          if the Api call fails
-     */
+
     @Test
     public void getOptionTest() throws Exception {
         Integer derivMonth = 202211;
@@ -74,4 +59,5 @@ public class SymbolNameApiTest {
         assertEquals("147116018", response.getSymbol());
         assertEquals("日経平均オプション 22/11 コール 26000", response.getSymbolName());
     }
+
 }

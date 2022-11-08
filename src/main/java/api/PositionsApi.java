@@ -3,9 +3,11 @@ package api;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import api.consts.ProductCode;
+import com.github.hiuchida.api.InfoApiWrapper;
+import com.github.hiuchida.api.consts.ProductCode;
+import com.github.hiuchida.api.consts.SideCode;
+
 import io.swagger.client.ApiException;
-import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.PositionsSuccess;
 
 /**
@@ -24,7 +26,7 @@ public class PositionsApi {
 	/**
 	 * 情報API。
 	 */
-	private InfoApi infoApi = new InfoApi();
+	private InfoApiWrapper infoApi = new InfoApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -43,9 +45,9 @@ public class PositionsApi {
 	 */
 	public List<PositionsSuccess> get() throws ApiException {
 		try {
-			String product = null;
+			ProductCode product = null;
 			String symbol = null;
-			String side = null;
+			SideCode side = null;
 			String addinfo = null;
 			List<PositionsSuccess> lps = invoke(product, symbol, side, addinfo);
 			return lps;
@@ -64,11 +66,10 @@ public class PositionsApi {
 	 */
 	public List<PositionsSuccess> getByProduct(ProductCode product) throws ApiException {
 		try {
-			String productStr = (product != null) ? product.toString() : null;
 			String symbol = null;
-			String side = null;
+			SideCode side = null;
 			String addinfo = null;
-			List<PositionsSuccess> lps = invoke(productStr, symbol, side, addinfo);
+			List<PositionsSuccess> lps = invoke(product, symbol, side, addinfo);
 			return lps;
 		} catch (ApiException e) {
 			ApiErrorLog.error(e, clazz, "getByProduct", "" + product);
@@ -85,8 +86,8 @@ public class PositionsApi {
 	 */
 	public List<PositionsSuccess> getBySymbol(String symbol) throws ApiException {
 		try {
-			String product = null;
-			String side = null;
+			ProductCode product = null;
+			SideCode side = null;
 			String addinfo = null;
 			List<PositionsSuccess> lps = invoke(product, symbol, side, addinfo);
 			return lps;
@@ -106,7 +107,28 @@ public class PositionsApi {
 	 * @return 残高照会のリスト。
 	 * @throws ApiException
 	 */
-	private List<PositionsSuccess> invoke(String product, String symbol, String side, String addinfo)
+	public List<PositionsSuccess> getByAll(ProductCode product, String symbol, SideCode side, String addinfo) throws ApiException {
+		try {
+			List<PositionsSuccess> lps = invoke(product, symbol, side, addinfo);
+			return lps;
+		} catch (ApiException e) {
+			String param = product + "," + symbol + "," + side + "," + addinfo;
+			ApiErrorLog.error(e, clazz, "getByAll", param);
+			throw e;
+		}
+	}
+
+	/**
+	 * 残高照会API。
+	 * 
+	 * @param product 取得する商品。
+	 * @param symbol  銘柄コード。
+	 * @param side    売買区分。
+	 * @param addinfo 追加情報出力フラグ（未指定時：true）。
+	 * @return 残高照会のリスト。
+	 * @throws ApiException
+	 */
+	private List<PositionsSuccess> invoke(ProductCode product, String symbol, SideCode side, String addinfo)
 			throws ApiException {
 		try {
 			List<PositionsSuccess> lps = infoApi.positionsGet(X_API_KEY, product, symbol, side, addinfo);

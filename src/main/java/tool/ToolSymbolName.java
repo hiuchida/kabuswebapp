@@ -12,6 +12,7 @@ import io.swagger.client.model.SymbolNameSuccess;
 import logic.SymbolNameLogic;
 import util.AppCommon;
 import util.GlobalConfigUtil;
+import util.StdoutLog;
 
 /**
  * PUSH API受信ツールと同じ銘柄コードのキャッシュを登録するツール。
@@ -59,9 +60,6 @@ public class ToolSymbolName extends AppCommon {
 	 */
 	public ToolSymbolName(String X_API_KEY) {
 		this.X_API_KEY = X_API_KEY;
-		System.out.println("MINI_START=" + MINI_START + ", MINI_END=" + MINI_END);
-		System.out.println("LARGE_START=" + LARGE_START + ", LARGE_END=" + LARGE_END);
-		System.out.println("OPTION_START=" + OPTION_START + ", OPTION_END=" + OPTION_END);
 		if (MINI_START < 0 || MINI_END < 0 || LARGE_START < 0 || LARGE_END < 0 || OPTION_START < 0 || OPTION_END < 0) {
 			throw new RuntimeException("Global.cfg setting ERROR");
 		}
@@ -73,7 +71,11 @@ public class ToolSymbolName extends AppCommon {
 	 * @return stdoutのリスト。
 	 */
 	public List<String> execute() {
+		StdoutLog.println(clazz, "execute()", "MINI_START=" + MINI_START + ", MINI_END=" + MINI_END);
+		StdoutLog.println(clazz, "execute()", "LARGE_START=" + LARGE_START + ", LARGE_END=" + LARGE_END);
+		StdoutLog.println(clazz, "execute()", "OPTION_START=" + OPTION_START + ", OPTION_END=" + OPTION_END);
 		List<String> lines = new ArrayList<>();
+
 		try (SymbolNameLogic symbolNameLogic = new SymbolNameLogic(X_API_KEY)) {
 			int yyyymm = MINI_START;
 			for (int ym = yyyymm; ym <= MINI_END; ym++) {

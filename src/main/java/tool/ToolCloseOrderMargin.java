@@ -4,10 +4,10 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.hiuchida.api.consts.ClosePositionOrderCode;
 import com.github.hiuchida.api.consts.SideCode;
 
 import api.SendoderApi;
-import api.consts.ClosePositionOrderCode;
 import api.consts.stock.AccountTypeCode;
 import api.consts.stock.CashmarginStockCode;
 import api.consts.stock.DelivTypeCode;

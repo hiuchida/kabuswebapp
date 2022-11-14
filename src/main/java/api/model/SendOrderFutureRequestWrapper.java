@@ -3,10 +3,10 @@ package api.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.hiuchida.api.consts.ClosePositionOrderCode;
 import com.github.hiuchida.api.consts.SideCode;
+import com.github.hiuchida.api.consts.UnderOverCode;
 
-import api.consts.ClosePositionOrderCode;
-import api.consts.UnderOverCode;
 import api.consts.deliv.AfterHitOrderTypeDCode;
 import api.consts.deliv.ExchangeDCode;
 import api.consts.deliv.FrontOrderTypeDCode;

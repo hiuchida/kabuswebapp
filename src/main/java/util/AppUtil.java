@@ -1,6 +1,6 @@
 package util;
 
-import api.consts.UnderOverCode;
+import com.github.hiuchida.api.consts.UnderOverCode;
 
 /**
  * アプリ向けユーティリティクラス。

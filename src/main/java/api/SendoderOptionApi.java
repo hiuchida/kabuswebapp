@@ -2,7 +2,8 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
-import api.model.SendOrderOptionRequestWrapper;
+import com.github.hiuchida.api.model.SendOrderOptionRequestWrapper;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.api.OrderApi;
 import io.swagger.client.model.OrderSuccess;

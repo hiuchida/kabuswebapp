@@ -12,9 +12,9 @@ import com.github.hiuchida.api.consts.stock.ExchangeSCode;
 import com.github.hiuchida.api.consts.stock.FrontOrderTypeSCode;
 import com.github.hiuchida.api.consts.stock.MarginTradeTypeCode;
 import com.github.hiuchida.api.consts.stock.SecurityTypeCode;
+import com.github.hiuchida.api.model.SendOrderRequestWrapper;
 
 import api.SendoderApi;
-import api.model.SendOrderRequestWrapper;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.OrderSuccess;
 import io.swagger.client.model.RequestSendOrder;

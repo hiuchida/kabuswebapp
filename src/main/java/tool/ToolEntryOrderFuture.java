@@ -9,9 +9,9 @@ import com.github.hiuchida.api.consts.deliv.ExchangeDCode;
 import com.github.hiuchida.api.consts.deliv.FrontOrderTypeDCode;
 import com.github.hiuchida.api.consts.deliv.TimeInForceCode;
 import com.github.hiuchida.api.consts.deliv.TradeTypeCode;
+import com.github.hiuchida.api.model.SendOrderFutureRequestWrapper;
 
 import api.SendoderFutureApi;
-import api.model.SendOrderFutureRequestWrapper;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.OrderSuccess;
 import io.swagger.client.model.RequestSendOrderDerivFuture;

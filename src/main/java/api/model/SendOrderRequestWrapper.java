@@ -125,39 +125,39 @@ public class SendOrderRequestWrapper {
 
 //	  private String password = null;
 
-	  private String symbol = null;
+	private String symbol = null;
 
-	  private ExchangeSCode exchange = null;
+	private ExchangeSCode exchange = null;
 
-	  private SecurityTypeCode securityType = null;
+	private SecurityTypeCode securityType = null;
 
-	  private SideCode side = null;
+	private SideCode side = null;
 
-	  private CashmarginStockCode cashMargin = null;
+	private CashmarginStockCode cashMargin = null;
 
-	  private MarginTradeTypeCode marginTradeType = null;
+	private MarginTradeTypeCode marginTradeType = null;
 
-	  private Double marginPremiumUnit = null;
+	private Double marginPremiumUnit = null;
 
-	  private DelivTypeCode delivType = null;
+	private DelivTypeCode delivType = null;
 
-	  private FundTypeCode fundType = null;
+	private FundTypeCode fundType = null;
 
-	  private AccountTypeCode accountType = null;
+	private AccountTypeCode accountType = null;
 
-	  private Integer qty = null;
+	private Integer qty = null;
 
-	  private ClosePositionOrderCode closePositionOrder = null;
+	private ClosePositionOrderCode closePositionOrder = null;
 
-	  private List<ClosePosition> closePositions = null;
+	private List<ClosePosition> closePositions = null;
 
-	  private FrontOrderTypeSCode frontOrderType = null;
+	private FrontOrderTypeSCode frontOrderType = null;
 
-	  private Double price = null;
+	private Double price = null;
 
-	  private Integer expireDay = null;
+	private Integer expireDay = null;
 
-	  private ReverseLimitOrder reverseLimitOrder = null;
+	private ReverseLimitOrder reverseLimitOrder = null;
 
 	public String getSymbol() {
 		return symbol;

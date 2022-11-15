@@ -15,6 +15,7 @@ import com.github.hiuchida.api.consts.stock.FrontOrderTypeSCode;
 import com.github.hiuchida.api.consts.stock.FundTypeCode;
 import com.github.hiuchida.api.consts.stock.MarginTradeTypeCode;
 import com.github.hiuchida.api.consts.stock.SecurityTypeCode;
+import com.github.hiuchida.api.consts.stock.TriggerSecCode;
 
 import io.swagger.client.model.Positions;
 import io.swagger.client.model.RequestSendOrder;
@@ -61,7 +62,7 @@ public class SendOrderRequestWrapper {
 	}
 
 	public static class ReverseLimitOrder {
-		private Integer triggerSec = null;
+		private TriggerSecCode triggerSec = null;
 
 		private Double triggerPrice = null;
 
@@ -71,11 +72,11 @@ public class SendOrderRequestWrapper {
 
 		private Double afterHitPrice = null;
 
-		public Integer getTriggerSec() {
+		public TriggerSecCode getTriggerSec() {
 			return triggerSec;
 		}
 
-		public void setTriggerSec(Integer triggerSec) {
+		public void setTriggerSec(TriggerSecCode triggerSec) {
 			this.triggerSec = triggerSec;
 		}
 
@@ -113,7 +114,7 @@ public class SendOrderRequestWrapper {
 
 		public RequestSendOrderReverseLimitOrder toRequestSendOrderReverseLimitOrder() {
 			RequestSendOrderReverseLimitOrder rlo = new RequestSendOrderReverseLimitOrder();
-			rlo.setTriggerSec(triggerSec);
+			rlo.setTriggerSec(triggerSec.intValue());
 			rlo.setTriggerPrice(triggerPrice);
 			rlo.setUnderOver(underOver.intValue());
 			rlo.setAfterHitOrderType(afterHitOrderType.intValue());

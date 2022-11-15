@@ -35,7 +35,8 @@ public class BoardApiTest {
     @Test
     public void getCurPriceTest() throws Exception {
         String symbol = "9433"; // ＫＤＤＩ
-        int response = api.getCurPrice(symbol, ExchangeCode.東証);
+        ExchangeCode ec = ExchangeCode.東証;
+        int response = api.getCurPrice(symbol, ec);
 
         // TODO: test validations
         System.out.println(response);        
@@ -44,7 +45,8 @@ public class BoardApiTest {
     @Test
     public void getTest() throws Exception {
         String symbol = "9433"; // ＫＤＤＩ
-        BoardSuccess response = api.get(symbol, ExchangeCode.東証);
+        ExchangeCode ec = ExchangeCode.東証;
+        BoardSuccess response = api.get(symbol, ec);
 
         // TODO: test validations
         System.out.println(response);        

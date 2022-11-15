@@ -2,10 +2,10 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.InfoApiWrapper;
 import com.github.hiuchida.api.consts.ExchangeCode;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.BoardSuccess;
 import util.DoubleUtil;
 
@@ -25,7 +25,7 @@ public class BoardApi {
 	/**
 	 * 情報API。
 	 */
-	private InfoApi infoApi = new InfoApi();
+	private InfoApiWrapper infoApi = new InfoApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -78,7 +78,7 @@ public class BoardApi {
 	 */
 	private BoardSuccess invoke(String symbol, ExchangeCode ec) throws ApiException {
 		try {
-			BoardSuccess bs = infoApi.boardGet(X_API_KEY, symbol + "@" + ec.toString());
+			BoardSuccess bs = infoApi.boardGet(X_API_KEY, symbol, ec);
 			return bs;
 		} finally {
 			try {

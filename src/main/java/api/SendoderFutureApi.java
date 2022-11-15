@@ -2,6 +2,7 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.OrderApiWrapper;
 import com.github.hiuchida.api.model.SendOrderFutureRequestWrapper;
 
 import io.swagger.client.ApiException;
@@ -32,7 +33,12 @@ public class SendoderFutureApi {
 	/**
 	 * 注文API。
 	 */
-	private OrderApi orderApi = new OrderApi();
+	private OrderApi orderApiOld = new OrderApi();
+
+	/**
+	 * 注文API。
+	 */
+	private OrderApiWrapper orderApi = new OrderApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -69,13 +75,11 @@ public class SendoderFutureApi {
 	 * @throws ApiException
 	 */
 	public OrderSuccess post(SendOrderFutureRequestWrapper req) throws ApiException {
-		RequestSendOrderDerivFuture body = req.toRequestSendOrderDerivFuture();
-		body.setPassword(TRADE_PASSWORD);
 		try {
-			OrderSuccess os = invoke(body);
+			OrderSuccess os = invoke(req);
 			return os;
 		} catch (ApiException e) {
-			ApiErrorLog.error(e, clazz, "post", toString(body));
+			ApiErrorLog.error(e, clazz, "post", toString(req));
 			throw e;
 		}
 	}
@@ -89,7 +93,26 @@ public class SendoderFutureApi {
 	 */
 	private OrderSuccess invoke(RequestSendOrderDerivFuture body) throws ApiException {
 		try {
-			OrderSuccess os = orderApi.sendoderFuturePost(body, X_API_KEY);
+			OrderSuccess os = orderApiOld.sendoderFuturePost(body, X_API_KEY);
+			return os;
+		} finally {
+			try {
+				Thread.sleep(240); // 4.2req/sec
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	/**
+	 * 注文発注（先物）API。
+	 * 
+	 * @param req 注文発注（先物）情報。
+	 * @return 注文発注（先物）情報。
+	 * @throws ApiException
+	 */
+	private OrderSuccess invoke(SendOrderFutureRequestWrapper req) throws ApiException {
+		try {
+			OrderSuccess os = orderApi.sendoderFuturePost(req, TRADE_PASSWORD, X_API_KEY);
 			return os;
 		} finally {
 			try {
@@ -107,6 +130,16 @@ public class SendoderFutureApi {
 	 */
 	private String toString(RequestSendOrderDerivFuture body) {
 		return body.toString();
+	}
+
+	/**
+	 * 文字列表現を取得する。
+	 * 
+	 * @param req 注文発注（先物）情報。
+	 * @return 文字列表現。
+	 */
+	private String toString(SendOrderFutureRequestWrapper req) {
+		return req.toString();
 	}
 
 }

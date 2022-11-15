@@ -2,6 +2,7 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.OrderApiWrapper;
 import com.github.hiuchida.api.model.SendOrderOptionRequestWrapper;
 
 import io.swagger.client.ApiException;
@@ -32,7 +33,12 @@ public class SendoderOptionApi {
 	/**
 	 * 注文API。
 	 */
-	private OrderApi orderApi = new OrderApi();
+	private OrderApi orderApiOld = new OrderApi();
+
+	/**
+	 * 注文API。
+	 */
+	private OrderApiWrapper orderApi = new OrderApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -69,13 +75,11 @@ public class SendoderOptionApi {
 	 * @throws ApiException
 	 */
 	public OrderSuccess post(SendOrderOptionRequestWrapper req) throws ApiException {
-		RequestSendOrderDerivOption body = req.toRequestSendOrderDerivOption();
-		body.setPassword(TRADE_PASSWORD);
 		try {
-			OrderSuccess os = invoke(body);
+			OrderSuccess os = invoke(req);
 			return os;
 		} catch (ApiException e) {
-			ApiErrorLog.error(e, clazz, "post", toString(body));
+			ApiErrorLog.error(e, clazz, "post", toString(req));
 			throw e;
 		}
 	}
@@ -89,7 +93,26 @@ public class SendoderOptionApi {
 	 */
 	private OrderSuccess invoke(RequestSendOrderDerivOption body) throws ApiException {
 		try {
-			OrderSuccess os = orderApi.sendorderOptionPost(body, X_API_KEY);
+			OrderSuccess os = orderApiOld.sendorderOptionPost(body, X_API_KEY);
+			return os;
+		} finally {
+			try {
+				Thread.sleep(240); // 4.2req/sec
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	/**
+	 * 注文発注（オプション）API。
+	 * 
+	 * @param req 注文発注（オプション）情報。
+	 * @return 注文発注（オプション）情報。
+	 * @throws ApiException
+	 */
+	private OrderSuccess invoke(SendOrderOptionRequestWrapper req) throws ApiException {
+		try {
+			OrderSuccess os = orderApi.sendorderOptionPost(req, TRADE_PASSWORD, X_API_KEY);
 			return os;
 		} finally {
 			try {
@@ -107,6 +130,16 @@ public class SendoderOptionApi {
 	 */
 	private String toString(RequestSendOrderDerivOption body) {
 		return body.toString();
+	}
+
+	/**
+	 * 文字列表現を取得する。
+	 * 
+	 * @param req 注文発注（オプション）情報。
+	 * @return 文字列表現。
+	 */
+	private String toString(SendOrderOptionRequestWrapper req) {
+		return req.toString();
 	}
 
 }

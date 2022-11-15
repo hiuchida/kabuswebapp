@@ -2,10 +2,10 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.OrderApiWrapper;
+
 import io.swagger.client.ApiException;
-import io.swagger.client.api.OrderApi;
 import io.swagger.client.model.OrderSuccess;
-import io.swagger.client.model.RequestCancelOrder;
 import util.SendOrderConfigUtil;
 
 /**
@@ -30,7 +30,7 @@ public class CancelorderApi {
 	/**
 	 * 注文API。
 	 */
-	private OrderApi orderApi = new OrderApi();
+	private OrderApiWrapper orderApi = new OrderApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -49,14 +49,11 @@ public class CancelorderApi {
 	 * @throws ApiException
 	 */
 	public OrderSuccess put(String orderId) throws ApiException {
-		RequestCancelOrder body = new RequestCancelOrder();
-		body.setPassword(TRADE_PASSWORD);
-		body.setOrderId(orderId);
 		try {
-			OrderSuccess os = invoke(body);
+			OrderSuccess os = invoke(orderId);
 			return os;
 		} catch (ApiException e) {
-			ApiErrorLog.error(e, clazz, "put", toString(body));
+			ApiErrorLog.error(e, clazz, "put", orderId);
 			throw e;
 		}
 	}
@@ -64,13 +61,13 @@ public class CancelorderApi {
 	/**
 	 * 注文取消API。
 	 * 
-	 * @param body 注文取消情報。
+	 * @param orderId 注文番号(ID)。
 	 * @return 注文取消情報。
 	 * @throws ApiException
 	 */
-	private OrderSuccess invoke(RequestCancelOrder body) throws ApiException {
+	private OrderSuccess invoke(String orderId) throws ApiException {
 		try {
-			OrderSuccess os = orderApi.cancelorderPut(body, X_API_KEY);
+			OrderSuccess os = orderApi.cancelorderPut(orderId, TRADE_PASSWORD, X_API_KEY);
 			return os;
 		} finally {
 			try {
@@ -78,16 +75,6 @@ public class CancelorderApi {
 			} catch (Exception e) {
 			}
 		}
-	}
-
-	/**
-	 * 文字列表現を取得する。
-	 * 
-	 * @param body 注文取消情報。
-	 * @return 文字列表現。
-	 */
-	private String toString(RequestCancelOrder body) {
-		return body.toString();
 	}
 
 }

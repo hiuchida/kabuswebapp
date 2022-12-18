@@ -3,12 +3,15 @@ package api;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.lang.invoke.MethodHandles;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.model.TokenSuccess;
+import util.Consts;
 
 /**
  * API tests for TokenApi
@@ -20,6 +23,7 @@ public class TokenApiTest {
 
 	@BeforeAll
 	public static void beforeOnce() throws ApiException {
+		ApiErrorLog.init(MethodHandles.lookup().lookupClass(), Consts.VERSION);
 		api = new TokenApi();
 	}
 

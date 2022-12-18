@@ -2,8 +2,9 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.InfoApiWrapper;
+
 import io.swagger.client.ApiException;
-import io.swagger.client.api.InfoApi;
 import io.swagger.client.model.ApiSoftLimitResponse;
 
 /**
@@ -22,7 +23,7 @@ public class ApisoftlimitApi {
 	/**
 	 * 情報API。
 	 */
-	private InfoApi infoApi = new InfoApi();
+	private InfoApiWrapper infoApi = new InfoApiWrapper();
 
 	/**
 	 * コンストラクタ。

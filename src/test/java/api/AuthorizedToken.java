@@ -1,8 +1,8 @@
 package api;
 
+import com.github.hiuchida.api.AuthApiWrapper;
+
 import io.swagger.client.ApiException;
-import io.swagger.client.api.AuthApi;
-import io.swagger.client.model.RequestToken;
 import io.swagger.client.model.TokenSuccess;
 
 /**
@@ -46,10 +46,8 @@ public class AuthorizedToken {
 	 */
 	private String initToken() throws ApiException {
 		if (token == null) {
-			AuthApi authApi = new AuthApi();
-			RequestToken body = new RequestToken();
-	        body.setApIPassword(TestConsts.API_PASSWORD);
-	        TokenSuccess response = authApi.tokenPost(body);
+			AuthApiWrapper authApi = new AuthApiWrapper();
+	        TokenSuccess response = authApi.tokenPost(TestConsts.API_PASSWORD);
 	        System.out.println(response);
 	        token = response.getToken();
 		}

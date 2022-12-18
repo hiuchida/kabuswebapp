@@ -2,9 +2,9 @@ package api;
 
 import java.lang.invoke.MethodHandles;
 
+import com.github.hiuchida.api.AuthApiWrapper;
+
 import io.swagger.client.ApiException;
-import io.swagger.client.api.AuthApi;
-import io.swagger.client.model.RequestToken;
 import io.swagger.client.model.TokenSuccess;
 
 /**
@@ -19,7 +19,7 @@ public class TokenApi {
 	/**
 	 * 認証API。
 	 */
-	private AuthApi authApi = new AuthApi();
+	private AuthApiWrapper authApi = new AuthApiWrapper();
 
 	/**
 	 * コンストラクタ。
@@ -48,9 +48,7 @@ public class TokenApi {
 	 */
 	public TokenSuccess post(String apiPassword) throws ApiException {
 		try {
-			RequestToken body = new RequestToken();
-			body.setApIPassword(apiPassword);
-			TokenSuccess ts = invoke(body);
+			TokenSuccess ts = invoke(apiPassword);
 			return ts;
 		} catch (ApiException e) {
 			ApiErrorLog.error(e, clazz, "post", apiPassword);
@@ -61,13 +59,13 @@ public class TokenApi {
 	/**
 	 * トークン発行API。
 	 * 
-	 * @param body RequestToken。
+	 * @param apiPassword APIパスワード。
 	 * @return トークン発行。
 	 * @throws ApiException
 	 */
-	private TokenSuccess invoke(RequestToken body) throws ApiException {
+	private TokenSuccess invoke(String apiPassword) throws ApiException {
 		try {
-			TokenSuccess ts = authApi.tokenPost(body);
+			TokenSuccess ts = authApi.tokenPost(apiPassword);
 			return ts;
 		} finally {
 		}

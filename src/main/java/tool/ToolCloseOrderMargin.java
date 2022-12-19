@@ -12,7 +12,7 @@ import com.github.hiuchida.api.consts.stock.DelivTypeCode;
 import com.github.hiuchida.api.consts.stock.ExchangeSCode;
 import com.github.hiuchida.api.consts.stock.FrontOrderTypeSCode;
 import com.github.hiuchida.api.consts.stock.MarginTradeTypeCode;
-import com.github.hiuchida.api.consts.stock.SecurityTypeCode;
+import com.github.hiuchida.api.consts.stock.SecurityTypeSCode;
 import com.github.hiuchida.api.model.SendOrderRequestWrapper;
 
 import api.SendoderApi;
@@ -96,7 +96,7 @@ public class ToolCloseOrderMargin extends AppCommon {
 		SendOrderRequestWrapper req = new SendOrderRequestWrapper();
 		req.setSymbol(symbol);
 		req.setExchange(ExchangeSCode.東証);
-		req.setSecurityType(SecurityTypeCode.株式);
+		req.setSecurityType(SecurityTypeSCode.株式);
 		req.setSide(side);
 		req.setCashMargin(CashmarginStockCode.返済);
 		req.setMarginTradeType(MarginTradeTypeCode.制度信用);
@@ -131,7 +131,7 @@ public class ToolCloseOrderMargin extends AppCommon {
 		RequestSendOrder body = new RequestSendOrder();
 		body.setSymbol(symbol);
 		body.setExchange(ExchangeSCode.東証.intValue());
-		body.setSecurityType(SecurityTypeCode.株式.intValue());
+		body.setSecurityType(SecurityTypeSCode.株式.intValue());
 		body.setSide(side.toString());
 		body.setCashMargin(CashmarginStockCode.返済.intValue());
 		body.setMarginTradeType(MarginTradeTypeCode.制度信用.intValue());

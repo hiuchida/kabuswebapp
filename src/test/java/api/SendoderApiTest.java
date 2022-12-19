@@ -14,7 +14,7 @@ import com.github.hiuchida.api.consts.stock.ExchangeSCode;
 import com.github.hiuchida.api.consts.stock.FrontOrderTypeSCode;
 import com.github.hiuchida.api.consts.stock.FundTypeCode;
 import com.github.hiuchida.api.consts.stock.MarginTradeTypeCode;
-import com.github.hiuchida.api.consts.stock.SecurityTypeCode;
+import com.github.hiuchida.api.consts.stock.SecurityTypeSCode;
 import com.github.hiuchida.api.model.SendOrderRequestWrapper;
 
 import io.swagger.client.ApiException;
@@ -46,7 +46,7 @@ public class SendoderApiTest {
     	SendOrderRequestWrapper req = new SendOrderRequestWrapper();
         req.setSymbol("9433@" + ExchangeSCode.東証.toString()); // ＫＤＤＩ
         req.setExchange(ExchangeSCode.東証);
-        req.setSecurityType(SecurityTypeCode.株式);
+        req.setSecurityType(SecurityTypeSCode.株式);
         req.setSide(SideCode.買);
         req.setCashMargin(CashmarginStockCode.現物);
         req.setMarginTradeType(MarginTradeTypeCode.制度信用);

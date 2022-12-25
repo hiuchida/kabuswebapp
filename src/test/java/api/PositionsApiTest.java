@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 
 import com.github.hiuchida.api.consts.ProductCode;
 import com.github.hiuchida.api.consts.SideCode;
+import com.github.hiuchida.api.model.PositionsSuccessWrapper;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.PositionsSuccess;
 import util.Consts;
 
 /**
@@ -36,7 +36,7 @@ public class PositionsApiTest {
 
     @Test
     public void getTest() throws Exception {
-        List<PositionsSuccess> response = api.get();
+        List<PositionsSuccessWrapper> response = api.get();
 
         // TODO: test validations
         System.out.println(response);        
@@ -45,7 +45,7 @@ public class PositionsApiTest {
     @Test
     public void getByProductTest() throws Exception {
         ProductCode product = ProductCode.先物;
-        List<PositionsSuccess> response = api.getByProduct(product);
+        List<PositionsSuccessWrapper> response = api.getByProduct(product);
 
         // TODO: test validations
         System.out.println(response);        
@@ -54,7 +54,7 @@ public class PositionsApiTest {
     @Test
     public void getBySymbolTest() throws Exception {
         String symbol = "167110019";
-        List<PositionsSuccess> response = api.getBySymbol(symbol);
+        List<PositionsSuccessWrapper> response = api.getBySymbol(symbol);
 
         // TODO: test validations
         System.out.println(response);        
@@ -66,7 +66,7 @@ public class PositionsApiTest {
         String symbol = "167110019";
         SideCode side = SideCode.買;
         String addinfo = null;
-        List<PositionsSuccess> response = api.getByAll(product, symbol, side, addinfo);
+        List<PositionsSuccessWrapper> response = api.getByAll(product, symbol, side, addinfo);
 
         // TODO: test validations
         System.out.println(response);        

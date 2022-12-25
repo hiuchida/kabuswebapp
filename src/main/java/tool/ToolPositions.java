@@ -11,17 +11,17 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.github.hiuchida.api.consts.SecurityTypeCode;
 import com.github.hiuchida.api.consts.SideCode;
+import com.github.hiuchida.api.model.PositionsSuccessWrapper;
 
 import api.PositionsApi;
 import io.swagger.client.ApiException;
-import io.swagger.client.model.PositionsSuccess;
 import util.AppCommon;
 import util.AppUtil;
 import util.DateTimeUtil;
 import util.DoubleUtil;
 import util.FileUtil;
-import util.IntegerUtil;
 import util.StdoutLog;
 import util.StringUtil;
 
@@ -243,10 +243,10 @@ public class ToolPositions extends AppCommon {
 	 */
 	public List<String> execute() throws ApiException {
 		readPositions();
-		List<PositionsSuccess> response = positionsApi.get();
+		List<PositionsSuccessWrapper> response = positionsApi.get();
 		StdoutLog.println(clazz, "execute()", "response.size=" + response.size());
 		for (int i = 0; i < response.size(); i++) {
-			PositionsSuccess pos = response.get(i);
+			PositionsSuccessWrapper pos = response.get(i);
 			String id = pos.getExecutionID();
 			String key = id;
 			if (key != null) {
@@ -258,10 +258,10 @@ public class ToolPositions extends AppCommon {
 			int price = (int) (double) pos.getPrice();
 			int leavesQty = (int) (double) pos.getLeavesQty();
 			int holdQty = (int) (double) pos.getHoldQty();
-			SideCode side = SideCode.valueOfCode(pos.getSide());
+			SideCode side = pos.getSide();
 			int curPrice = DoubleUtil.intValue(pos.getCurrentPrice());
-			int type = IntegerUtil.intValue(pos.getSecurityType());
-			if ((type != 901 && type != 103) || curPrice == 0) {
+			SecurityTypeCode type = pos.getSecurityType();
+			if ((type != SecurityTypeCode.日経平均225ミニ先物 && type != SecurityTypeCode.日経225OP) || curPrice == 0) {
 				continue;
 			}
 			PosInfo pi = posMap.get(key);

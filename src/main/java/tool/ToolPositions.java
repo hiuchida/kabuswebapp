@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.github.hiuchida.api.consts.SideCode;
+
 import api.PositionsApi;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.PositionsSuccess;
@@ -80,7 +82,7 @@ public class ToolPositions extends AppCommon {
 		/**
 		 * 売買区分(Side)。
 		 */
-		public String side;
+		public SideCode side;
 		/**
 		 * 現在値(CurrentPrice)。
 		 */
@@ -106,7 +108,7 @@ public class ToolPositions extends AppCommon {
 		 * @param side        売買区分(Side)。
 		 * @param curPrice    現在値(CurrentPrice)。
 		 */
-		public PosInfo(String executionId, String code, String name, int price, int leavesQty, int holdQty, String side,
+		public PosInfo(String executionId, String code, String name, int price, int leavesQty, int holdQty, SideCode side,
 				int curPrice) {
 			this.executionId = executionId;
 			this.code = code;
@@ -132,7 +134,7 @@ public class ToolPositions extends AppCommon {
 			this.price = StringUtil.parseInt(cols[i++]);
 			this.leavesQty = StringUtil.parseInt(cols[i++]);
 			this.holdQty = StringUtil.parseInt(cols[i++]);
-			this.side = "" + StringUtil.parseInt(cols[i++]);
+			this.side = SideCode.valueOf(StringUtil.parseInt(cols[i++]));
 			this.curPrice = StringUtil.parseInt(cols[i++]);
 			this.createDate = StringUtil.parseLong(cols[i++]);
 			this.updateDate = StringUtil.parseLong(cols[i++]);
@@ -256,7 +258,7 @@ public class ToolPositions extends AppCommon {
 			int price = (int) (double) pos.getPrice();
 			int leavesQty = (int) (double) pos.getLeavesQty();
 			int holdQty = (int) (double) pos.getHoldQty();
-			String side = pos.getSide();
+			SideCode side = SideCode.valueOfCode(pos.getSide());
 			int curPrice = DoubleUtil.intValue(pos.getCurrentPrice());
 			int type = IntegerUtil.intValue(pos.getSecurityType());
 			if ((type != 901 && type != 103) || curPrice == 0) {

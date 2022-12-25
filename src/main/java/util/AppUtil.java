@@ -1,5 +1,6 @@
 package util;
 
+import com.github.hiuchida.api.consts.SideCode;
 import com.github.hiuchida.api.consts.UnderOverCode;
 
 /**
@@ -42,11 +43,11 @@ public class AppUtil {
 	 * @param side 売買区分(Side)。
 	 * @return 符号
 	 */
-	public static int sign(String side) {
+	public static int sign(SideCode side) {
 		switch (side) {
-		case "1":
+		case 売:
 			return -1;
-		case "2":
+		case 買:
 			return 1;
 		default:
 			throw new RuntimeException();
@@ -59,11 +60,11 @@ public class AppUtil {
 	 * @param side 売買区分(Side)。
 	 * @return ポジション(L or S)。
 	 */
-	public static String sideStr(String side) {
+	public static String sideStr(SideCode side) {
 		switch (side) {
-		case "1":
+		case 売:
 			return "S";
-		case "2":
+		case 買:
 			return "L";
 		default:
 			throw new RuntimeException();
@@ -76,12 +77,12 @@ public class AppUtil {
 	 * @param side ポジション(L or S)。
 	 * @return 売買区分(Side)。
 	 */
-	public static String sideCode(String side) {
+	public static SideCode sideCode(String side) {
 		switch (side) {
 		case "S":
-			return "1";
+			return SideCode.売;
 		case "L":
-			return "2";
+			return SideCode.買;
 		default:
 			throw new RuntimeException();
 		}
@@ -93,12 +94,12 @@ public class AppUtil {
 	 * @param side 売買区分(Side)。
 	 * @return 反対の売買区分(1 or 2)。
 	 */
-	public static String sideReturn(String side) {
+	public static SideCode sideReturn(SideCode side) {
 		switch (side) {
-		case "1":
-			return "2";
-		case "2":
-			return "1";
+		case 売:
+			return SideCode.買;
+		case 買:
+			return SideCode.売;
 		default:
 			throw new RuntimeException();
 		}
@@ -110,12 +111,12 @@ public class AppUtil {
 	 * @param side 売買区分(Side)。
 	 * @return 以上／以下(1 or 2)。
 	 */
-	public static int underOver(String side) {
+	public static UnderOverCode underOver(SideCode side) {
 		switch (side) {
-		case "1":
-			return UnderOverCode.以下.intValue();
-		case "2":
-			return UnderOverCode.以上.intValue();
+		case 売:
+			return UnderOverCode.以下;
+		case 買:
+			return UnderOverCode.以上;
 		default:
 			throw new RuntimeException();
 		}

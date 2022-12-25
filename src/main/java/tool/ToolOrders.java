@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.github.hiuchida.api.consts.SideCode;
+
 import api.OrdersApi;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.OrdersSuccess;
@@ -131,7 +133,7 @@ public class ToolOrders extends AppCommon {
 		/**
 		 * 売買区分(Side)。
 		 */
-		public String side;
+		public SideCode side;
 		/**
 		 * 生成日時。
 		 */
@@ -157,7 +159,7 @@ public class ToolOrders extends AppCommon {
 		 * @param qty        発注数量(OrderQty)。
 		 * @param side       売買区分(Side)。
 		 */
-		public OrderInfo(String orderId, String code, String name, int state, int cashMargin, int price, int qty, String side) {
+		public OrderInfo(String orderId, String code, String name, int state, int cashMargin, int price, int qty, SideCode side) {
 			this.orderId = orderId;
 			this.code = code;
 			this.name = name;
@@ -185,7 +187,7 @@ public class ToolOrders extends AppCommon {
 			this.cashMargin = StringUtil.parseInt(cols[i++]);
 			this.price = StringUtil.parseInt(cols[i++]);
 			this.orderQty = StringUtil.parseInt(cols[i++]);
-			this.side = "" + StringUtil.parseInt(cols[i++]);
+			this.side = SideCode.valueOf(StringUtil.parseInt(cols[i++]));
 			this.createDate = StringUtil.parseLong(cols[i++]);
 			this.updateDate = StringUtil.parseLong(cols[i++]);
 			this.executionIds = cols[i++];
@@ -306,7 +308,7 @@ public class ToolOrders extends AppCommon {
 			name = replaceOpName(name);
 			int price = (int) (double) order.getPrice();
 			int orderQty = (int) (double) order.getOrderQty();
-			String side = order.getSide();
+			SideCode side = SideCode.valueOfCode(order.getSide());
 			int state = order.getState();
 			int exchange = order.getExchange();
 			Integer cashMargin = order.getCashMargin();

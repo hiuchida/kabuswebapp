@@ -11,12 +11,13 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.github.hiuchida.api.consts.CashmarginCode;
+import com.github.hiuchida.api.consts.ExchangeCode;
 import com.github.hiuchida.api.consts.SideCode;
+import com.github.hiuchida.api.model.OrdersSuccessWrapper;
 
 import api.OrdersApi;
 import io.swagger.client.ApiException;
-import io.swagger.client.model.OrdersSuccess;
-import io.swagger.client.model.OrdersSuccessDetails;
 import util.AppCommon;
 import util.AppUtil;
 import util.DateTimeUtil;
@@ -121,7 +122,7 @@ public class ToolOrders extends AppCommon {
 		/**
 		 * 取引区分(CashMargin)。
 		 */
-		public int cashMargin;
+		public CashmarginCode cashMargin;
 		/**
 		 * 値段(Price)。
 		 */
@@ -159,7 +160,7 @@ public class ToolOrders extends AppCommon {
 		 * @param qty        発注数量(OrderQty)。
 		 * @param side       売買区分(Side)。
 		 */
-		public OrderInfo(String orderId, String code, String name, int state, int cashMargin, int price, int qty, SideCode side) {
+		public OrderInfo(String orderId, String code, String name, int state, CashmarginCode cashMargin, int price, int qty, SideCode side) {
 			this.orderId = orderId;
 			this.code = code;
 			this.name = name;
@@ -184,7 +185,7 @@ public class ToolOrders extends AppCommon {
 			this.code = cols[i++];
 			this.name = cols[i++];
 			this.state = StringUtil.parseInt(cols[i++]);
-			this.cashMargin = StringUtil.parseInt(cols[i++]);
+			this.cashMargin = CashmarginCode.valueOf(StringUtil.parseInt(cols[i++]));
 			this.price = StringUtil.parseInt(cols[i++]);
 			this.orderQty = StringUtil.parseInt(cols[i++]);
 			this.side = SideCode.valueOf(StringUtil.parseInt(cols[i++]));
@@ -298,22 +299,22 @@ public class ToolOrders extends AppCommon {
 	 */
 	public List<String> execute() throws ApiException {
 		readOrders();
-		List<OrdersSuccess> response = ordersApi.get();
+		List<OrdersSuccessWrapper> response = ordersApi.get();
 		StdoutLog.println(clazz, "execute()", "response.size=" + response.size());
 		for (int i = 0; i < response.size(); i++) {
-			OrdersSuccess order = response.get(i);
+			OrdersSuccessWrapper order = response.get(i);
 			String orderId = order.getID();
 			String code = order.getSymbol();
 			String name = order.getSymbolName();
 			name = replaceOpName(name);
 			int price = (int) (double) order.getPrice();
 			int orderQty = (int) (double) order.getOrderQty();
-			SideCode side = SideCode.valueOfCode(order.getSide());
-			int state = order.getState();
-			int exchange = order.getExchange();
-			Integer cashMargin = order.getCashMargin();
+			SideCode side = order.getSide();
+			int state = order.getState().intValue();
+			ExchangeCode exchange = order.getExchange();
+			CashmarginCode cashMargin = order.getCashMargin();
 			String executionIds = "";
-			for (OrdersSuccessDetails osd : order.getDetails()) {
+			for (OrdersSuccessWrapper.Detail osd : order.getDetails()) {
 				String executionId = osd.getExecutionID();
 				if (executionId != null) {
 					int executionPrice = (int) (double) osd.getPrice();
@@ -324,10 +325,10 @@ public class ToolOrders extends AppCommon {
 					executionIds = executionIds + executionId + ":" + executionPrice + "x" + executionQty;
 				}
 			}
-			if (exchange != 2 && exchange != 23 && exchange != 24) { // 先物OP以外
+			if (exchange != ExchangeCode.日通し && exchange != ExchangeCode.日中 && exchange != ExchangeCode.夜間) { // 先物OP以外
 				continue;
 			}
-//			if (cashMargin != 2) { // 新規以外
+//			if (cashMargin != CashmarginCode.新規) {
 //				continue;
 //			}
 			String key = orderId;

@@ -8,9 +8,9 @@ import com.github.hiuchida.api.consts.CashmarginCode;
 import com.github.hiuchida.api.consts.ProductCode;
 import com.github.hiuchida.api.consts.SideCode;
 import com.github.hiuchida.api.consts.StateCode;
+import com.github.hiuchida.api.model.OrdersSuccessWrapper;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.OrdersSuccess;
 
 /**
  * 注文約定照会API。
@@ -45,7 +45,7 @@ public class OrdersApi {
 	 * @return 注文約定照会のリスト。
 	 * @throws ApiException
 	 */
-	public List<OrdersSuccess> get() throws ApiException {
+	public List<OrdersSuccessWrapper> get() throws ApiException {
 		try {
 			ProductCode product = null;
 			String id = null;
@@ -55,7 +55,7 @@ public class OrdersApi {
 			StateCode state = null;
 			SideCode side = null;
 			CashmarginCode cashmargin = null;
-			List<OrdersSuccess> los = invoke(product, id, updtime, details, symbol, state, side, cashmargin);
+			List<OrdersSuccessWrapper> los = invoke(product, id, updtime, details, symbol, state, side, cashmargin);
 			return los;
 		} catch (ApiException e) {
 			ApiErrorLog.error(e, clazz, "get", "");
@@ -77,11 +77,11 @@ public class OrdersApi {
 	 * @return 注文約定照会のリスト。
 	 * @throws ApiException
 	 */
-	public List<OrdersSuccess> getByAll(ProductCode product, String id, String updtime, String details, String symbol,
+	public List<OrdersSuccessWrapper> getByAll(ProductCode product, String id, String updtime, String details, String symbol,
 			StateCode state, SideCode side, CashmarginCode cashmargin)
 			throws ApiException {
 		try {
-			List<OrdersSuccess> los = invoke(product, id, updtime, details, symbol, state, side, cashmargin);
+			List<OrdersSuccessWrapper> los = invoke(product, id, updtime, details, symbol, state, side, cashmargin);
 			return los;
 		} catch (ApiException e) {
 			String param = product + "," + id + "," + updtime + "," + details + "," + symbol + "," + state + "," + side
@@ -105,10 +105,10 @@ public class OrdersApi {
 	 * @return 注文約定照会のリスト。
 	 * @throws ApiException
 	 */
-	private List<OrdersSuccess> invoke(ProductCode product, String id, String updtime, String details, String symbol,
+	private List<OrdersSuccessWrapper> invoke(ProductCode product, String id, String updtime, String details, String symbol,
 			StateCode state, SideCode side, CashmarginCode cashmargin) throws ApiException {
 		try {
-			List<OrdersSuccess> los = infoApi.ordersGet(X_API_KEY, product, id, updtime, details, symbol, state, side,
+			List<OrdersSuccessWrapper> los = infoApi.ordersGet(X_API_KEY, product, id, updtime, details, symbol, state, side,
 					cashmargin);
 			return los;
 		} finally {

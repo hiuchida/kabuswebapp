@@ -11,9 +11,9 @@ import com.github.hiuchida.api.consts.CashmarginCode;
 import com.github.hiuchida.api.consts.ProductCode;
 import com.github.hiuchida.api.consts.SideCode;
 import com.github.hiuchida.api.consts.StateCode;
+import com.github.hiuchida.api.model.OrdersSuccessWrapper;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.OrdersSuccess;
 import util.Consts;
 
 /**
@@ -38,14 +38,14 @@ public class OrdersApiTest {
 
     @Test
     public void getTest() throws Exception {
-        List<OrdersSuccess> response = api.get();
+        List<OrdersSuccessWrapper> response = api.get();
 
         // TODO: test validations
 //        System.out.println(response);
         System.out.println("List<OrdersSuccess>.size=" + response.size());
         for (int i = 0; i < response.size(); i++) {
-        	OrdersSuccess order = response.get(i);
-        	if (order.getState() == 5) {
+        	OrdersSuccessWrapper order = response.get(i);
+        	if (order.getState() == StateCode.終了) {
         		continue;
         	}
         	System.out.println((i + 1) + ": " + order);
@@ -62,14 +62,14 @@ public class OrdersApiTest {
         StateCode state = StateCode.処理済;
         SideCode side = SideCode.買;
         CashmarginCode cashmargin = CashmarginCode.新規;
-        List<OrdersSuccess> response = api.getByAll(product, id, updtime, details, symbol, state, side, cashmargin);
+        List<OrdersSuccessWrapper> response = api.getByAll(product, id, updtime, details, symbol, state, side, cashmargin);
 
         // TODO: test validations
 //        System.out.println(response);
         System.out.println("List<OrdersSuccess>.size=" + response.size());
         for (int i = 0; i < response.size(); i++) {
-        	OrdersSuccess order = response.get(i);
-        	if (order.getState() == 5) {
+        	OrdersSuccessWrapper order = response.get(i);
+        	if (order.getState() == StateCode.終了) {
         		continue;
         	}
         	System.out.println((i + 1) + ": " + order);

@@ -4,9 +4,9 @@ import java.lang.invoke.MethodHandles;
 
 import com.github.hiuchida.api.InfoApiWrapper;
 import com.github.hiuchida.api.consts.ExchangeCode;
+import com.github.hiuchida.api.model.BoardSuccessWrapper;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.BoardSuccess;
 import util.DoubleUtil;
 
 /**
@@ -45,7 +45,7 @@ public class BoardApi {
 	 * @throws ApiException
 	 */
 	public int getCurPrice(String symbol, ExchangeCode ec) throws ApiException {
-		BoardSuccess bs = this.get(symbol, ec);
+		BoardSuccessWrapper bs = this.get(symbol, ec);
 		int curPrice = DoubleUtil.intValue(bs.getCurrentPrice());
 		return curPrice;
 	}
@@ -58,9 +58,9 @@ public class BoardApi {
 	 * @return 時価情報・板情報。
 	 * @throws ApiException
 	 */
-	public BoardSuccess get(String symbol, ExchangeCode ec) throws ApiException {
+	public BoardSuccessWrapper get(String symbol, ExchangeCode ec) throws ApiException {
 		try {
-			BoardSuccess bs = invoke(symbol, ec);
+			BoardSuccessWrapper bs = invoke(symbol, ec);
 			return bs;
 		} catch (ApiException e) {
 			ApiErrorLog.error(e, clazz, "get", symbol);
@@ -76,9 +76,9 @@ public class BoardApi {
 	 * @return 時価情報・板情報。
 	 * @throws ApiException
 	 */
-	private BoardSuccess invoke(String symbol, ExchangeCode ec) throws ApiException {
+	private BoardSuccessWrapper invoke(String symbol, ExchangeCode ec) throws ApiException {
 		try {
-			BoardSuccess bs = infoApi.boardGet(X_API_KEY, symbol, ec);
+			BoardSuccessWrapper bs = infoApi.boardGet(X_API_KEY, symbol, ec);
 			return bs;
 		} finally {
 			try {

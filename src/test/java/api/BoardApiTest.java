@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.github.hiuchida.api.consts.ExchangeCode;
+import com.github.hiuchida.api.model.BoardSuccessWrapper;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.BoardSuccess;
 import util.Consts;
 
 /**
@@ -46,7 +46,7 @@ public class BoardApiTest {
     public void getTest() throws Exception {
         String symbol = "9433"; // ＫＤＤＩ
         ExchangeCode ec = ExchangeCode.東証;
-        BoardSuccess response = api.get(symbol, ec);
+        BoardSuccessWrapper response = api.get(symbol, ec);
 
         // TODO: test validations
         System.out.println(response);        

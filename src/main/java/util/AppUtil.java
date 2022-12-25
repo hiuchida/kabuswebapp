@@ -2,6 +2,7 @@ package util;
 
 import com.github.hiuchida.api.consts.SideCode;
 import com.github.hiuchida.api.consts.UnderOverCode;
+import com.github.hiuchida.api.consts.deliv.ExchangeDCode;
 
 /**
  * アプリ向けユーティリティクラス。
@@ -24,13 +25,13 @@ public class AppUtil {
 	 * @param exchange 市場コード(Exchange)。
 	 * @return 市場名。
 	 */
-	public static String exchangeStr(int exchange) {
+	public static String exchangeStr(ExchangeDCode exchange) {
 		switch (exchange) {
-		case 2:
+		case 日通し:
 			return "日通し";
-		case 23:
+		case 日中:
 			return " 日中 ";
-		case 24:
+		case 夜間:
 			return " 夜間 ";
 		default:
 			throw new RuntimeException();
